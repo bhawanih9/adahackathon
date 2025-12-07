@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="home-container">
+    <div class="hero-section">
+        <h1 class="fade-in">Master Physics <br> with <span class="highlight">Intelligence</span></h1>
+        <p class="subtitle fade-in delay-1">Your 24/7 AI tutor for complex concepts.</p>
+    </div>
+
+    <div class="action-cards fade-in delay-2">
+        <a href="{{ url_for('ask') }}" class="card">
+            <div class="card-icon">🚀</div>
+            <h2>Solve Question</h2>
+            <p>Get instant answers and explanations.</p>
+        </a>
+        <a href="#" class="card secondary">
+            <div class="card-icon">📚</div>
+            <h2>Learn Concept</h2>
+            <p>Explore topics at your own pace.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

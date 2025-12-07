@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="understanding-container text-center fade-in">
+    <div class="loader"></div>
+    <h2 class="mt-20">Analyzing your question...</h2>
+    <p id="topic-text" class="topic-hidden">Topic Identified: <span class="highlight">{{ topic }}</span></p>
+
+    <a href="{{ url_for('explanation') }}" id="continue-btn" class="btn-primary mt-20 hidden">Continue</a>
+</div>
+
+<script>
+    setTimeout(() => {
+        document.getElementById('topic-text').classList.remove('topic-hidden');
+    }, 1500);
+
+    setTimeout(() => {
+        document.getElementById('continue-btn').classList.remove('hidden');
+        // Auto redirect attempt (optional, but button is better for user control in demo)
+        window.location.href = "{{ url_for('explanation') }}";
+    }, 3000);
+</script>
+
+<style>
+    .loader {
+        border: 5px solid rgba(255, 255, 255, 0.1);
+        border-top: 5px solid var(--primary-color);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .topic-hidden {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="center-box fade-in">
+    <h1>Ask a <span class="highlight">Question</span></h1>
+    <p class="subtitle">Type your physics question below.</p>
+
+    <form action="{{ url_for('ask') }}" method="POST" class="ask-form">
+        <label for="age" style="display:block; margin-bottom:10px; color:#b2bec3;">Your Age</label>
+        <input type="number" name="age" id="age" value="15" min="5" max="100" style="margin-bottom: 20px;">
+
+        <label for="question" style="display:block; margin-bottom:10px; color:#b2bec3;">Questions</label>
+        <textarea name="question" rows="4" placeholder="e.g., Why do apples fall?"></textarea>
+        <div class="text-center">
+            <button type="submit" class="btn-primary">Submit Question</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .center-box {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+</style>
+{% endblock %}

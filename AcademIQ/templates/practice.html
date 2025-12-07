@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="practice-container fade-in center-box">
+    <h1>Quick <span class="highlight">Check</span></h1>
+
+    <div class="question-card mt-20">
+        <h3>Question 1:</h3>
+        <p class="question-text">{{ question.question }}</p>
+
+        <div class="options-grid">
+            {% for option in question.options %}
+            <button class="option-btn" onclick="checkAnswer('{{ option }}')">{{ option }}</button>
+            {% endfor %}
+        </div>
+
+        <div id="feedback" class="feedback-box hidden">
+            <h4 id="feedback-title"></h4>
+            <p id="feedback-text"></p>
+        </div>
+
+        <a href="{{ url_for('summary') }}" id="next-btn" class="btn-primary mt-20 hidden"
+            style="display: none; margin: 20px auto; width: fit-content;">See Summary</a>
+    </div>
+</div>
+
+<script>
+    function checkAnswer(selectedOption) {
+        const formData = new FormData();
+        formData.append('answer', selectedOption);
+        formData.append('q_id', '{{ question.id }}');
+
+        fetch('/check_answer', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                const feedbackBox = document.getElementById('feedback');
+                const feedbackTitle = document.getElementById('feedback-title');
+                const feedbackText = document.getElementById('feedback-text');
+                const nextBtn = document.getElementById('next-btn');
+                const buttons = document.querySelectorAll('.option-btn');
+
+                feedbackBox.classList.remove('hidden');
+                feedbackBox.className = 'feedback-box ' + (data.correct ? 'success' : 'error');
+
+                feedbackTitle.innerText = data.correct ? 'Correct! 🎉' : 'Incorrect 😔';
+                feedbackText.innerText = data.feedback;
+
+                // Disable buttons
+                buttons.forEach(btn => btn.disabled = true);
+
+                // Show Next button
+                nextBtn.style.display = 'block';
+            });
+    }
+</script>
+
+<style>
+    .question-card {
+        background: var(--glass-bg);
+        padding: 30px;
+        border-radius: 15px;
+        border: 1px solid var(--glass-border);
+    }
+
+    .question-text {
+        font-size: 1.2rem;
+        margin-bottom: 25px;
+    }
+
+    .options-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .option-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--glass-border);
+        padding: 15px;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.2s;
+    }
+
+    .option-btn:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .option-btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
+    .feedback-box {
+        margin-top: 25px;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .feedback-box.success {
+        background: rgba(46, 204, 113, 0.2);
+        border: 1px solid #2ecc71;
+    }
+
+    .feedback-box.error {
+        background: rgba(231, 76, 60, 0.2);
+        border: 1px solid #e74c3c;
+    }
+</style>
+{% endblock %}

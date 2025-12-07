@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="summary-container center-box text-center fade-in">
+    <h1>Session <span class="highlight">Summary</span></h1>
+
+    <div class="score-circle mt-20">
+        <span class="score-num">1/1</span>
+        <span class="score-label">Score</span>
+    </div>
+
+    <div class="recommendation-card mt-20">
+        <h3>Suggested Next Topic:</h3>
+        <p><i class="fas fa-arrow-right"></i> Planetary Motion</p>
+    </div>
+
+    <div class="action-buttons-vertical mt-20">
+        <a href="{{ url_for('ask') }}" class="btn-primary full-width-btn">Try Another Topic</a>
+        <a href="{{ url_for('chat') }}" class="btn-secondary-outline full-width-btn">Ask Follow-up Question</a>
+        <a href="{{ url_for('index') }}" class="btn-text">Back to Home</a>
+    </div>
+</div>
+
+<style>
+    .score-circle {
+        width: 120px;
+        height: 120px;
+        border: 4px solid var(--primary-color);
+        border-radius: 50%;
+        margin: 30px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
+    }
+
+    .score-num {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .score-label {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .recommendation-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+
+    .action-buttons-vertical {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .full-width-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .btn-text {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+</style>
+{% endblock %}

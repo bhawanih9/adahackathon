@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html class="light" lang="kn"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Understanding Question Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#135bec",
+            "background-light": "#f6f6f8",
+            "background-dark": "#101622",
+          },
+          fontFamily: {
+            "display": ["Lexend", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- Top App Bar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0">
+<div class="flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-stone-800 dark:text-stone-200">close</span>
+</div>
+<h2 class="text-stone-800 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಅರ್ಥೈಸಲಾಗುತ್ತಿದೆ</h2>
+</div>
+<!-- Main Content Area -->
+<div class="flex flex-1 flex-col justify-center items-center px-6 pb-24 text-center">
+<!-- Animated Progress Indicator -->
+<div class="mb-12">
+<div class="relative flex items-center justify-center w-40 h-40">
+<div class="absolute inset-0 rounded-full border-4 border-stone-200 dark:border-stone-700"></div>
+<div class="absolute inset-0 rounded-full border-4 border-primary animate-spin" style="border-top-color: transparent; border-bottom-color: transparent; animation-duration: 1.5s;"></div>
+<span class="material-symbols-outlined text-6xl text-primary">psychology</span>
+</div>
+</div>
+<!-- Status Text Block -->
+<div class="flex flex-col gap-5 w-full max-w-sm">
+<div class="flex flex-col gap-3">
+<div class="flex gap-2 justify-between items-center">
+<p class="text-stone-800 dark:text-white text-base font-medium leading-normal">ಗುರುತಿಸಲಾದ ವಿಷಯ: ಗುರುತ್ವಾಕರ್ಷಣೆ</p>
+</div>
+<div class="rounded-lg bg-stone-200 dark:bg-stone-800 h-2">
+<div class="h-2 rounded-lg bg-primary" style="width: 100%;"></div>
+</div>
+<p class="text-stone-500 dark:text-stone-400 text-sm font-normal leading-normal text-left">Identified Topic: Gravity</p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex gap-2 justify-between items-center">
+<p class="text-stone-800 dark:text-white text-base font-medium leading-normal">ಪ್ರಶ್ನೆಯ ಪ್ರಕಾರ: ಪರಿಕಲ್ಪನಾ ಭೌತಶಾಸ್ತ್ರ</p>
+</div>
+<div class="rounded-lg bg-stone-200 dark:bg-stone-800 h-2">
+<div class="h-2 rounded-lg bg-primary" style="width: 75%;"></div>
+</div>
+<p class="text-stone-500 dark:text-stone-400 text-sm font-normal leading-normal text-left">Question Type: Conceptual Physics</p>
+</div>
+</div>
+</div>
+<!-- Bottom Action Button -->
+<div class="w-full p-4 bg-background-light dark:bg-background-dark fixed bottom-0 left-0">
+<button class="flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">ಮುಂದುವರಿಸಿ</span>
+</button>
+</div>
+</div>
+</body></html>

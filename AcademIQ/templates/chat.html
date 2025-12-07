@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="chat-container fade-in center-box">
+    <header class="chat-header">
+        <h1>AI <span class="highlight">Tutor</span></h1>
+    </header>
+
+    <div class="chat-window" id="chat-window">
+        <!-- History (Mock) -->
+        <div class="message user">
+            <p>What is Gravity?</p>
+        </div>
+        <div class="message bot">
+            <p>Gravity is the force that attracts two bodies toward each other.</p>
+            <p class="kannada-sub">ಗುರುತ್ವಾಕರ್ಷಣೆಯು ಎರಡು ಕಾಯಗಳನ್ನು ಪರಸ್ಪರ ಆಕರ್ಷಿಸುವ ಶಕ್ತಿಯಾಗಿದೆ.</p>
+        </div>
+    </div>
+
+    <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type a follow-up question...">
+        <button id="send-btn" class="btn-icon"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+
+<script>
+    const chatWindow = document.getElementById('chat-window');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+
+    function sendMessage() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        // User Message
+        appendMessage(text, 'user');
+        chatInput.value = '';
+
+        // Call API
+        fetch('/chat_api', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: text })
+        })
+            .then(response => response.json())
+            .then(data => {
+                appendMessage(data.response, 'bot');
+            })
+            .catch(err => {
+                appendMessage("Error reaching tutor.", 'bot');
+            });
+    }
+
+    function appendMessage(text, type) {
+        const div = document.createElement('div');
+        div.className = `message ${type}`;
+        div.innerHTML = `<p>${text}</p>`;
+        chatWindow.appendChild(div);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+</script>
+
+<style>
+    .chat-window {
+        height: 400px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        padding: 20px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        border: 1px solid var(--glass-border);
+    }
+
+    .message {
+        padding: 10px 15px;
+        border-radius: 10px;
+        max-width: 80%;
+    }
+
+    .message.user {
+        background: var(--primary-color);
+        align-self: flex-end;
+        border-bottom-right-radius: 2px;
+    }
+
+    .message.bot {
+        background: rgba(255, 255, 255, 0.1);
+        align-self: flex-start;
+        border-bottom-left-radius: 2px;
+    }
+
+    .kannada-sub {
+        font-size: 0.9rem;
+        color: #dfe6e9;
+        margin-top: 5px;
+        font-style: italic;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 5px;
+    }
+
+    .chat-input-area {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-icon {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        width: 50px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
+</style>
+{% endblock %}

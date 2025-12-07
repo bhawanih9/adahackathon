@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="diagram-container text-center fade-in">
+    <h1>Visualizing <span class="highlight">{{ data.topic | default('Concept') }}</span></h1>
+
+    <div class="canvas-box">
+        <!-- CSS Art for Gravity (Generic Placeholder) -->
+        <div class="sun"></div>
+        <div class="orbit">
+            <div class="planet"></div>
+        </div>
+        <div class="arrow-force">
+            <!-- Dynamic formula if available, else generic -->
+            <span class="force-label">{{ data.formula | default('F = ma') }}</span>
+        </div>
+    </div>
+
+    <p class="caption"><strong>Diagram Description:</strong> {{ data.diagram_description | default('A visual
+        representation of the concept.') }}</p>
+    <p class="kannada-caption">ಚಿತ್ರ: {{ data.topic }}</p>
+
+    <div class="action-bar mt-20">
+        <a href="{{ url_for('explanation') }}" class="btn-secondary-outline">Back</a>
+        <a href="{{ url_for('practice') }}" class="btn-primary">Start Practice</a>
+    </div>
+</div>
+
+<style>
+    .canvas-box {
+        background: rgba(0, 0, 0, 0.4);
+        height: 300px;
+        width: 100%;
+        max-width: 500px;
+        margin: 20px auto;
+        border-radius: 20px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .sun {
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(circle at 30% 30%, #f1c40f, #e67e22);
+        border-radius: 50%;
+        box-shadow: 0 0 40px #f39c12;
+        z-index: 2;
+    }
+
+    .orbit {
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        border: 1px dashed rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: rotate 10s linear infinite;
+    }
+
+    .planet {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        width: 30px;
+        height: 30px;
+        background: radial-gradient(circle at 30% 30%, #3498db, #2980b9);
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        margin-left: -15px;
+        /* Center offset */
+    }
+
+    .arrow-force {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 100px;
+        background: transparent;
+        transform: translateY(-120px);
+    }
+
+    .force-label {
+        position: absolute;
+        color: white;
+        font-size: 0.8rem;
+        top: 40%;
+        left: 60px;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .kannada-caption {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-top: 5px;
+    }
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+{% endblock %}

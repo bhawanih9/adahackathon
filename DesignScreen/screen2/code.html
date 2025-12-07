@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AcademIQ Home Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#135bec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+            },
+            fontFamily: {
+              "display": ["Lexend", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden">
+<!-- Top App Bar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10 border-b border-slate-200 dark:border-slate-800">
+<div class="flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined text-2xl text-[#111318] dark:text-white">science</span>
+</div>
+<h1 class="text-[#111318] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] flex-1 text-center">AcademIQ</h1>
+<div class="flex w-12 items-center justify-end">
+<button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 bg-transparent text-[#111318] dark:text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</div>
+</div>
+<!-- Body Text / Subtitle -->
+<p class="text-[#616f89] dark:text-slate-400 text-base font-normal leading-normal pb-3 pt-1 px-4 text-center">ಕನ್ನಡದಲ್ಲಿ ಭೌತಶಾಸ್ತ್ರವನ್ನು ಕಲಿಯಿರಿ</p>
+<div class="flex flex-col gap-4 p-4">
+<!-- Card 1: Learn Physics -->
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] bg-white dark:bg-slate-900 overflow-hidden">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover" data-alt="Abstract image representing physics concepts like atoms and orbits in blue and purple hues" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD6bRIYAVKWweQBBZDd1Ik1Mhz3qcjqUjP6EHBf0aTRm0PD1wgIjZGyUiRhdsXkuOYzGDHs0Y2nx17Zzp7Dvhp3_kuwghcg15OhOF3d62nZIGmIxvNzjLl8IQsRTT2ceG-aoxV-qcICNO9GJdObUHcnLWc-DxCYTuPfS2q1o2nxLE5Bk83JG_egzgBgbl6MEAgtzaBgiMRIpbn_73j_ueX7gTKa0E1cnlGo8R_2u6LnfMzg_WWgIBhqSZQoge7zhOjkEweonDFnn5A");'></div>
+<div class="flex w-full grow flex-col items-stretch justify-center gap-2 p-4">
+<p class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Learn Physics in Kannada</p>
+<div class="flex items-center gap-3 justify-between">
+<p class="text-[#616f89] dark:text-slate-400 text-base font-normal leading-normal flex-1">Start your learning journey with comprehensive lessons and examples.</p>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-medium leading-normal gap-2">
+<span class="truncate">Start Learning</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Solve a Question -->
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] bg-white dark:bg-slate-900 p-4 gap-4">
+<div class="flex w-full grow flex-col items-stretch justify-center gap-1">
+<p class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Solve a Question</p>
+<p class="text-[#616f89] dark:text-slate-400 text-base font-normal leading-normal">Get step-by-step solutions to your physics problems.</p>
+</div>
+<div class="flex flex-col gap-3">
+<textarea class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111318] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border-slate-300 dark:border-slate-700 bg-background-light dark:bg-background-dark min-h-24 placeholder:text-[#616f89] dark:placeholder:text-slate-500 p-3 text-base font-normal leading-normal" placeholder="Paste or type your question..."></textarea>
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 px-4 bg-primary text-white text-sm font-medium leading-normal gap-2">
+<span class="truncate">Solve</span>
+<span class="material-symbols-outlined text-lg">psychology</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Learn a Concept -->
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] bg-white dark:bg-slate-900 p-4 gap-3">
+<p class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Learn a Concept</p>
+<p class="text-[#616f89] dark:text-slate-400 text-base font-normal leading-normal">Browse popular topics to build your understanding.</p>
+<div class="flex flex-wrap items-center gap-2 pt-2">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-primary/10 dark:bg-primary/20 text-primary dark:text-blue-300 text-sm font-medium leading-normal">
+<span class="truncate">Gravity</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-primary/10 dark:bg-primary/20 text-primary dark:text-blue-300 text-sm font-medium leading-normal">
+<span class="truncate">Motion</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-primary/10 dark:bg-primary/20 text-primary dark:text-blue-300 text-sm font-medium leading-normal">
+<span class="truncate">Force</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 bg-primary/10 dark:bg-primary/20 text-primary dark:text-blue-300 text-sm font-medium leading-normal">
+<span class="truncate">Light</span>
+</button>
+</div>
+</div>
+<!-- Card 4: Teacher Zone -->
+<div class="flex items-center justify-between rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] bg-white dark:bg-slate-900 p-4 gap-4">
+<div class="flex flex-col">
+<p class="text-[#111318] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Teacher Zone</p>
+<p class="text-[#616f89] dark:text-slate-400 text-base font-normal leading-normal">Resources for educators.</p>
+</div>
+<div class="flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-800 px-3 py-1">
+<span class="material-symbols-outlined text-sm text-[#616f89] dark:text-slate-400">hourglass_top</span>
+<p class="text-xs font-medium text-[#616f89] dark:text-slate-400">Coming Soon</p>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="sticky bottom-0 mt-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border-t border-slate-200 dark:border-slate-800">
+<div class="flex h-20 items-center justify-around px-4">
+<a class="flex flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined !text-2xl" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-xs font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-[#616f89] dark:text-slate-400" href="#">
+<span class="material-symbols-outlined !text-2xl">exercise</span>
+<span class="text-xs font-medium">Practice</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-[#616f89] dark:text-slate-400" href="#">
+<span class="material-symbols-outlined !text-2xl">person</span>
+<span class="text-xs font-medium">Profile</span>
+</a>
+<a class="flex flex-col items-center justify-center gap-1 text-[#616f89] dark:text-slate-400" href="#">
+<span class="material-symbols-outlined !text-2xl">settings</span>
+<span class="text-xs font-medium">Settings</span>
+</a>
+</div>
+</div>
+</div>
+</body></html>
