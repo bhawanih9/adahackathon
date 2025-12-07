@@ -1,34 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="practice-container fade-in center-box">
-    <h1>Quick <span class="highlight">Check</span></h1>
+<div class="practice-container fade-in center-box" style="max-width: 800px; padding-bottom: 50px;">
+    <h1>Quick <span class="highlight">Check</span> (5 Questions)</h1>
 
+    {% for question in questions %}
     <div class="question-card mt-20">
-        <h3>Question 1:</h3>
+        <h3>Question {{ loop.index }}:</h3>
         <p class="question-text">{{ question.question }}</p>
 
         <div class="options-grid">
             {% for option in question.options %}
-            <button class="option-btn" onclick="checkAnswer('{{ option }}')">{{ option }}</button>
+            <button class="option-btn btn-group-{{ question.id }}"
+                onclick="checkAnswer('{{ option }}', '{{ question.id }}')">{{ option }}</button>
             {% endfor %}
         </div>
 
-        <div id="feedback" class="feedback-box hidden">
-            <h4 id="feedback-title"></h4>
-            <p id="feedback-text"></p>
+        <div id="feedback-{{ question.id }}" class="feedback-box hidden">
+            <h4 id="feedback-title-{{ question.id }}"></h4>
+            <p id="feedback-text-{{ question.id }}"></p>
         </div>
+    </div>
+    {% endfor %}
 
-        <a href="{{ url_for('summary') }}" id="next-btn" class="btn-primary mt-20 hidden"
-            style="display: none; margin: 20px auto; width: fit-content;">See Summary</a>
+    <div class="text-center mt-20">
+        <a href="{{ url_for('summary') }}" class="btn-primary">Finish & See Summary</a>
     </div>
 </div>
 
 <script>
-    function checkAnswer(selectedOption) {
+    function checkAnswer(selectedOption, qId) {
         const formData = new FormData();
         formData.append('answer', selectedOption);
-        formData.append('q_id', '{{ question.id }}');
+        formData.append('q_id', qId);
 
         fetch('/check_answer', {
             method: 'POST',
@@ -36,11 +40,11 @@
         })
             .then(response => response.json())
             .then(data => {
-                const feedbackBox = document.getElementById('feedback');
-                const feedbackTitle = document.getElementById('feedback-title');
-                const feedbackText = document.getElementById('feedback-text');
-                const nextBtn = document.getElementById('next-btn');
-                const buttons = document.querySelectorAll('.option-btn');
+                const feedbackBox = document.getElementById(`feedback-${qId}`);
+                const feedbackTitle = document.getElementById(`feedback-title-${qId}`);
+                const feedbackText = document.getElementById(`feedback-text-${qId}`);
+                // Target only buttons for THIS question
+                const buttons = document.querySelectorAll(`.btn-group-${qId}`);
 
                 feedbackBox.classList.remove('hidden');
                 feedbackBox.className = 'feedback-box ' + (data.correct ? 'success' : 'error');
@@ -48,11 +52,8 @@
                 feedbackTitle.innerText = data.correct ? 'Correct! 🎉' : 'Incorrect 😔';
                 feedbackText.innerText = data.feedback;
 
-                // Disable buttons
+                // Disable buttons for this question
                 buttons.forEach(btn => btn.disabled = true);
-
-                // Show Next button
-                nextBtn.style.display = 'block';
             });
     }
 </script>

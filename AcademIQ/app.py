@@ -77,29 +77,37 @@ def practice():
     age = session.get('age', 15)
     
     try:
-        quiz = agent.generate_quiz(topic, age)
-        # Add an ID for tracking (mock)
-        quiz['id'] = 1 
-        session['current_quiz'] = quiz
+        quiz_data = agent.generate_quiz(topic, age)
+        questions = quiz_data.get('questions', [])
+        # Assign IDs just in case
+        for idx, q in enumerate(questions):
+            q['id'] = idx + 1
+            
+        session['current_quiz_questions'] = questions
+        print(f"DEBUG: Generated Quiz List: {len(questions)} items")
     except Exception as e:
          print(f"Quiz Gen Error: {e}")
-         quiz = {
-            "id": 1,
-            "question": "Error generating quiz",
-            "options": ["A", "B", "C", "D"],
-            "correct": "A",
-            "feedback_correct": "",
-            "feedback_incorrect": ""
-         }
+         questions = []
 
-    return render_template('practice.html', question=quiz)
+    return render_template('practice.html', questions=questions)
 
 @app.route('/check_answer', methods=['POST'])
 def check_answer():
     answer = request.form.get('answer')
-    quiz = session.get('current_quiz', {})
+    q_id = int(request.form.get('q_id', 0))
+    questions = session.get('current_quiz_questions', [])
     
-    correct = (answer == quiz.get('correct'))
+    # Find question object
+    quiz = next((q for q in questions if q['id'] == q_id), None)
+    
+    if not quiz:
+        return jsonify({'correct': False, 'feedback': 'Error: Question not found.'})
+    
+    # Strip whitespace to be safe
+    correct_answer = quiz.get('correct', '').strip()
+    user_answer = answer.strip() if answer else ''
+    
+    correct = (user_answer.lower() == correct_answer.lower())
     feedback = quiz.get('feedback_correct') if correct else quiz.get('feedback_incorrect')
     return jsonify({'correct': correct, 'feedback': feedback})
 

@@ -4,16 +4,10 @@
 <div class="diagram-container text-center fade-in">
     <h1>Visualizing <span class="highlight">{{ data.topic | default('Concept') }}</span></h1>
 
-    <div class="canvas-box">
-        <!-- CSS Art for Gravity (Generic Placeholder) -->
-        <div class="sun"></div>
-        <div class="orbit">
-            <div class="planet"></div>
-        </div>
-        <div class="arrow-force">
-            <!-- Dynamic formula if available, else generic -->
-            <span class="force-label">{{ data.formula | default('F = ma') }}</span>
-        </div>
+    <div class="canvas-box" style="background: none; border: none; overflow: hidden;">
+        <!-- Dynamic Image -->
+        <img src="https://image.pollinations.ai/prompt/{{ data.image_prompt | urlencode }}?width=500&height=300&nologo=true"
+            alt="{{ data.topic }} Diagram" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
     </div>
 
     <p class="caption"><strong>Diagram Description:</strong> {{ data.diagram_description | default('A visual
