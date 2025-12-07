@@ -1,6 +1,6 @@
 # AcademIQ - Intelligent Physics Tutor
 
-AcademIQ is a premium, AI-powered educational web application designed to teach physics concepts to students of varying ages. It leverages the **Google Agent Development Kit (ADK)** patterns and **Gemini Models** to provide personalized, age-adaptive learning experiences.
+AcademIQ is a premium, AI-powered educational web application designed to teach physics concepts to students of varying age in Kannada language. It leverages the **Google Agent Development Kit (ADK)** patterns and **Gemini Models** to provide personalized, age-adaptive learning experiences.
 
 ## 🚀 Features
 
